@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kubik Milano | Caffetteria, Aperitivo & Cocktail Bar - Viale Monte Nero 39</title>
+    <meta name="description" content="Kubik Milano in Viale Monte Nero 39, Porta Romana. Dalla colazione al mattino, pranzo, aperitivo milanese con abbondanti taglieri e cocktail bar fino a tarda notte con 'La Regola del Dado'.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0d0f12',
+                            card: '#161922',
+                            cardHover: '#1f2430',
+                            red: '#dc2626',
+                            redBright: '#ef4444',
+                            redDark: '#991b1b',
+                            redGlow: 'rgba(239, 68, 68, 0.35)',
+                            textLight: '#f3f4f6',
+                            textMuted: '#9ca3af'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d0f12;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+
+        .font-display {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Red Neon & Glow Utilities */
+        .red-glow {
+            box-shadow: 0 0 25px rgba(239, 68, 68, 0.35);
+        }
+
+        .red-glow-lg {
+            box-shadow: 0 0 45px rgba(220, 38, 38, 0.45);
+        }
+
+        .red-text-glow {
+            text-shadow: 0 0 12px rgba(239, 68, 68, 0.6);
+        }
+
+        .red-border-glow {
+            border-color: #ef4444;
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.25);
+        }
+
+        /* Glassmorphism */
+        .glass-panel {
+            background: rgba(22, 25, 34, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(239, 68, 68, 0.15);
+        }
+
+        .glass-nav {
+            background: rgba(13, 15, 18, 0.92);
+            backdrop-filter: blur(12px);
+        }
+
+        /* Smooth custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0d0f12;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ef4444;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-red selection:text-white">
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-gradient-to-r from-brand-redDark via-brand-red to-red-600 text-white text-xs md:text-sm py-2 px-4 text-center font-medium shadow-inner flex items-center justify-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-white animate-pulse"></span>
+        <span>Aperto dal Lunedì al Sabato 06:30 - 02:00 | Viale Monte Nero 39, Porta Romana (Milano)</span>
+        <button onclick="openCacheModal()" class="ml-3 underline hover:text-gray-200 text-xs font-semibold hidden sm:inline-block">
+            <i class="fa-solid fa-rotate-right mr-1"></i> Non vedi la nuova versione? Svuota Cache
+        </button>
+    </div>
+
+    <!-- MAIN NAVBAR -->
+    <header class="sticky top-0 z-40 glass-nav border-b border-gray-800/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-redBright to-brand-redDark flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-300 red-glow">
+                        <i class="fa-solid fa-dice-d6 text-xl text-white"></i>
+                    </div>
+                    <div>
+                        <span class="font-display font-black text-2xl tracking-wider text-white uppercase block leading-none">KUBIK</span>
+                        <span class="text-[10px] tracking-[0.25em] text-brand-redBright uppercase font-semibold">MILANO</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium">
+                    <a href="#chi-siamo" class="text-gray-300 hover:text-brand-redBright transition-colors">Chi Siamo</a>
+                    <a href="#regola-dado" class="text-brand-redBright hover:text-white font-semibold flex items-center gap-1.5">
+                        <i class="fa-solid fa-dice text-brand-redBright"></i>
+                        <span>La Regola del Dado</span>
+                    </a>
+                    <a href="#esperienza" class="text-gray-300 hover:text-brand-redBright transition-colors">Colazione & Aperitivo</a>
+                    <a href="#galleria" class="text-gray-300 hover:text-brand-redBright transition-colors">Galleria</a>
+                    <a href="#orari-dove" class="text-gray-300 hover:text-brand-redBright transition-colors">Dove Siamo</a>
+                </nav>
+
+                <!-- Header Actions -->
+                <div class="hidden sm:flex items-center space-x-4">
+                    <button onclick="openCacheModal()" title="Guida Aggiornamento Cache GitHub" class="p-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors border border-gray-800" aria-label="Aggiorna Cache">
+                        <i class="fa-solid fa-arrows-rotate text-sm"></i>
+                    </button>
+                    <a href="https://wa.me/393348666109?text=Ciao%20Kubik%20Milano!%20Vorrei%20informazioni%20o%20prenotare%20un%20tavolo." target="_blank" rel="noopener noreferrer" class="bg-gradient-to-r from-brand-red to-brand-redBright hover:from-brand-redDark hover:to-brand-red text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-all shadow-md hover:shadow-red-900/40 flex items-center gap-2 red-glow">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>Prenota Ora</span>
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="flex lg:hidden items-center gap-2">
+                    <button onclick="openCacheModal()" class="p-2 rounded-lg text-gray-300 border border-gray-800 text-xs">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                    </button>
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl text-gray-300 hover:text-white hover:bg-gray-800 transition-colors" aria-label="Menu Principale">
+                        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-brand-card/95 border-b border-gray-800 px-4 pt-3 pb-6 space-y-3">
+            <a href="#chi-siamo" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-white font-medium">Chi Siamo</a>
+            <a href="#regola-dado" onclick="toggleMobileMenu()" class="block py-2 text-brand-redBright font-bold flex items-center gap-2">
+                <i class="fa-solid fa-dice"></i> La Regola del Dado
+            </a>
+            <a href="#esperienza" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-white font-medium">Colazione, Pranzo & Aperitivo</a>
+            <a href="#galleria" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-white font-medium">Galleria Foto</a>
+            <a href="#orari-dove" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-white font-medium">Dove Siamo & Orari</a>
+            
+            <div class="pt-4 border-t border-gray-800 flex flex-col gap-3">
+                <a href="https://wa.me/393348666109?text=Ciao%20Kubik%20Milano!%20Vorrei%20prenotare%20un%20tavolo." target="_blank" class="w-full bg-brand-red text-white py-3 rounded-xl font-bold text-center flex items-center justify-center gap-2 red-glow">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>Prenota via WhatsApp</span>
+                </a>
+                <button onclick="openCacheModal()" class="w-full text-xs text-gray-400 py-2 text-center underline">
+                    <i class="fa-solid fa-rotate-right mr-1"></i> Guida Svuota Cache (Ctrl+F5)
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-16 lg:py-24">
+        <!-- Background Image with Ambient Glow Overlays -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1920&q=80" alt="Kubik Milano Cocktail Bar Ambient Atmosphere" class="w-full h-full object-cover object-center scale-105 transform filter brightness-40 contrast-125">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/80 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-dark/90 via-transparent to-brand-dark/90"></div>
+            <!-- Red Neon Light Flares -->
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-red/20 rounded-full blur-[120px] pointer-events-none"></div>
+            <div class="absolute bottom-1/3 right-1/4 w-80 h-80 bg-rose-600/15 rounded-full blur-[100px] pointer-events-none"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border border-brand-red/30 mb-8 animate-fade-in">
+                <span class="w-2.5 h-2.5 rounded-full bg-brand-redBright animate-ping"></span>
+                <span class="text-xs sm:text-sm font-semibold tracking-wide text-gray-200">PORTA ROMANA • Viale Monte Nero 39</span>
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-white mb-6 uppercase leading-none">
+                L'ANIMA DEL <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-redBright via-red-500 to-rose-600 red-text-glow">DRINK & FOOD</span> A MILANO
+            </h1>
+
+            <p class="max-w-3xl mx-auto text-lg sm:text-xl text-gray-300 font-light leading-relaxed mb-10">
+                Dalla colazione con brioches fresche della mattina all'aperitivo con abbondanti taglieri di salumi e formaggi. La sera, il cocktail bar si accende con <strong class="text-white font-semibold underline decoration-brand-red">La Regola del Dado</strong>.
+            </p>
+
+            <!-- Call to Actions -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-16">
+                <a href="#regola-dado" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-red to-brand-redBright hover:from-brand-redDark hover:to-brand-red text-white font-bold text-lg transition-all transform hover:-translate-y-0.5 red-glow flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-dice-six text-2xl text-white"></i>
+                    <span>La Regola del Dado</span>
+                </a>
+                
+                <a href="#esperienza" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-panel hover:bg-gray-800/80 text-white font-semibold text-lg transition-all border border-gray-700 hover:border-brand-red/50 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-utensils text-brand-redBright"></i>
+                    <span>Scopri il Menu</span>
+                </a>
+            </div>
+
+            <!-- Quick Highlight Badges -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                <div class="glass-panel p-4 rounded-2xl border border-gray-800">
+                    <div class="text-brand-redBright font-display font-bold text-2xl sm:text-3xl">4.5 ★</div>
+                    <div class="text-xs text-gray-400 mt-1 uppercase tracking-wider font-semibold">Valutazione Google</div>
+                </div>
+                <div class="glass-panel p-4 rounded-2xl border border-gray-800">
+                    <div class="text-white font-display font-bold text-2xl sm:text-3xl">06:30 - 02:00</div>
+                    <div class="text-xs text-gray-400 mt-1 uppercase tracking-wider font-semibold">Orario Continuato</div>
+                </div>
+                <div class="glass-panel p-4 rounded-2xl border border-gray-800">
+                    <div class="text-brand-redBright font-display font-bold text-2xl sm:text-3xl">Taglieri Maxi</div>
+                    <div class="text-xs text-gray-400 mt-1 uppercase tracking-wider font-semibold">Aperitivo Milanese</div>
+                </div>
+                <div class="glass-panel p-4 rounded-2xl border border-gray-800">
+                    <div class="text-white font-display font-bold text-2xl sm:text-3xl">Ven & Sab</div>
+                    <div class="text-xs text-gray-400 mt-1 uppercase tracking-wider font-semibold">Gira il Dado al Bar</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- LA REGOLA DEL DADO - DEDICATED FEATURE SECTION -->
+    <section id="regola-dado" class="py-20 relative bg-gradient-to-b from-brand-dark via-brand-card to-brand-dark border-y border-red-950/40">
+        
+        <!-- Glowing Ambient Lighting -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl h-96 bg-brand-red/10 blur-[140px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-redDark/30 border border-brand-red/40 text-brand-redBright text-xs font-bold uppercase tracking-widest mb-4">
+                    <i class="fa-solid fa-fire text-brand-redBright"></i>
+                    <span>La Promo del Venerdì e Sabato Sera</span>
+                </div>
+                <h2 class="font-display text-3xl sm:text-5xl font-black text-white uppercase tracking-tight mb-4">
+                    LA REGOLA DEL <span class="text-brand-redBright red-text-glow">DADO</span> 🎲
+                </h2>
+                <p class="text-gray-300 text-base sm:text-lg">
+                    Il fine settimana al **Kubik Milano** ha un sapore unico. Ad ogni drink ordinato al bancone, la fortuna può raddoppiare il tuo aperitivo o offrirti uno shot speciale!
+                </p>
+            </div>
+
+            <!-- Rule Explanation Graphic Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                
+                <!-- STEP 1 CARD -->
+                <div class="bg-brand-card/90 rounded-2xl p-8 border border-gray-800 relative group hover:border-brand-red/50 transition-all duration-300">
+                    <div class="absolute -top-5 left-6 bg-gray-900 text-brand-redBright font-display font-extrabold text-sm px-4 py-1 rounded-full border border-brand-red/40">
+                        FASE 01
+                    </div>
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-red-950 to-brand-card flex items-center justify-center text-brand-redBright text-3xl mb-6 border border-brand-red/30 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-martini-glass-citrus"></i>
+                    </div>
+                    <h3 class="font-display text-2xl font-bold text-white mb-3">Ordina un Drink</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Chiedi il tuo cocktail preferito, un calice di vino o un pestato artigianale al banco del Kubik durante la serata di Venerdì o Sabato.
+                    </p>
+                </div>
+
+                <!-- STEP 2 CARD -->
+                <div class="bg-brand-card/90 rounded-2xl p-8 border border-brand-red/40 relative group hover:border-brand-redBright transition-all duration-300 shadow-xl red-border-glow">
+                    <div class="absolute -top-5 left-6 bg-brand-red text-white font-display font-extrabold text-sm px-4 py-1 rounded-full shadow-md">
+                        FASE 02
+                    </div>
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-red to-brand-redDark flex items-center justify-center text-white text-3xl mb-6 shadow-lg red-glow group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-dice text-white"></i>
+                    </div>
+                    <h3 class="font-display text-2xl font-bold text-white mb-3">Tira il Dado</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Insieme al tuo drink, il bartender ti passerà il dado del Kubik. Un solo lancio secco sul bancone per tentare la sorte!
+                    </p>
+                </div>
+
+                <!-- STEP 3 CARD -->
+                <div class="bg-brand-card/90 rounded-2xl p-8 border border-gray-800 relative group hover:border-brand-red/50 transition-all duration-300">
+                    <div class="absolute -top-5 left-6 bg-gray-900 text-brand-redBright font-display font-extrabold text-sm px-4 py-1 rounded-full border border-brand-red/40">
+                        FASE 03
+                    </div>
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-red-950 to-brand-card flex items-center justify-center text-brand-redBright text-3xl mb-6 border border-brand-red/30 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-gift"></i>
+                    </div>
+                    <h3 class="font-display text-2xl font-bold text-white mb-3">Vinci il Premio</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        In base al numero emerso, sblocchi subito omaggi esclusivi al banco. Nessun inganno, solo divertimento puro con gli amici.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- OUTCOME TABLE & VISUAL DISPLAY -->
+            <div class="glass-panel p-6 sm:p-10 rounded-3xl border border-brand-red/30 shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 translate-x-12 -translate-y-12 w-64 h-64 bg-brand-red/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <h3 class="font-display text-2xl sm:text-3xl font-bold text-white mb-8 text-center uppercase tracking-wide">
+                    Tabella dei Risultati del Dado
+                </h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- ROLL 1: SHOTTINO -->
+                    <div class="bg-gray-900/90 rounded-2xl p-6 border-l-4 border-amber-500 hover:bg-gray-900 transition-colors">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-display font-black text-4xl text-amber-500">DADO 1</span>
+                            <span class="text-2xl">🥃</span>
+                        </div>
+                        <h4 class="font-bold text-white text-lg mb-2">Shottino Omaggio</h4>
+                        <p class="text-xs text-gray-400 leading-relaxed">
+                            Esce l'1? Ti aggiudichi subito uno shottino speciale preparato al momento offerto dalla casa per accendere la serata!
+                        </p>
+                    </div>
+
+                    <!-- ROLL 6: JACKPOT DRINK BIS -->
+                    <div class="bg-gradient-to-b from-brand-redDark/40 to-gray-900 rounded-2xl p-6 border-2 border-brand-redBright shadow-lg red-glow relative">
+                        <span class="absolute -top-3 right-4 bg-brand-redBright text-white text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full tracking-widest shadow">JACKPOT</span>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-display font-black text-4xl text-brand-redBright">DADO 6</span>
+                            <span class="text-2xl">🍹</span>
+                        </div>
+                        <h4 class="font-bold text-white text-lg mb-2">Secondo Drink Identico GRATIS</h4>
+                        <p class="text-xs text-gray-200 leading-relaxed font-medium">
+                            Colpisci il 6! Il bartender ti versa immediatamente un **secondo cocktail dello stesso tipo GRATIS**. Un vero Jackpot!
+                        </p>
+                    </div>
+
+                    <!-- ROLL 2, 3, 4, 5 -->
+                    <div class="bg-gray-900/90 rounded-2xl p-6 border-l-4 border-gray-600 hover:bg-gray-900 transition-colors">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-display font-black text-3xl text-gray-400">DADO 2, 3, 4, 5</span>
+                            <span class="text-2xl">✨</span>
+                        </div>
+                        <h4 class="font-bold text-white text-lg mb-2">Godi il tuo Drink!</h4>
+                        <p class="text-xs text-gray-400 leading-relaxed">
+                            Nessun premio immediato questa volta, ma assapori il tuo cocktail perfetto in ottima compagnia e potrai riprovarci al giro successivo!
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- Promo Note -->
+                <div class="mt-8 pt-6 border-t border-gray-800/80 text-center text-xs text-gray-400 flex flex-col sm:flex-row items-center justify-center gap-2">
+                    <i class="fa-solid fa-circle-info text-brand-redBright"></i>
+                    <span>La promo del dado è valida esclusivamente il Venerdì e Sabato sera dopo le ore 21:00 presso il bancone. Si invita a bere responsabilmente.</span>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- EXPERIENCES & MENU HIGHLIGHTS -->
+    <section id="esperienza" class="py-20 relative bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-redBright font-semibold text-sm tracking-widest uppercase block mb-2">Dalla Mattina alla Notte</span>
+                <h2 class="font-display text-3xl sm:text-5xl font-black text-white uppercase tracking-tight">
+                    L'ESPERIENZA <span class="text-brand-redBright">KUBIK</span>
+                </h2>
+                <p class="text-gray-400 mt-4 text-base sm:text-lg">
+                    Ci trovi in Viale Monte Nero 39 per accompagnare ogni momento della tua giornata milanese con prodotti freschi e qualità senza compromessi.
+                </p>
+            </div>
+
+            <!-- Grid of 4 Moments -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- MOMENT 1: COLAZIONE -->
+                <div class="glass-panel rounded-3xl overflow-hidden border border-gray-800 hover:border-brand-red/40 transition-all duration-300 flex flex-col sm:flex-row group">
+                    <div class="sm:w-1/2 relative min-h-[220px] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=800&q=80" alt="Colazione Kubik Milano espresso e brioches" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 bg-brand-dark/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-brand-redBright border border-brand-red/30">
+                            06:30 - 11:30
+                        </div>
+                    </div>
+                    <div class="sm:w-1/2 p-6 sm:p-8 flex flex-col justify-between">
+                        <div>
+                            <div class="text-xs font-bold text-brand-redBright uppercase tracking-wider mb-1">Il Mattino</div>
+                            <h3 class="font-display text-2xl font-bold text-white mb-3">Colazione d'Autore</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                                Brioches e cornetti fragranti sfornati ogni mattina, espressi intensi, cappuccini cremosi, spremute d'arancia e opzioni vegane/integrali.
+                            </p>
+                        </div>
+                        <ul class="text-xs text-gray-300 space-y-2 border-t border-gray-800 pt-4">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redBright"></i> Brioches farcite sul momento</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redBright"></i> Miscela di caffè selezionata</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- MOMENT 2: PAUSA PRANZO -->
+                <div class="glass-panel rounded-3xl overflow-hidden border border-gray-800 hover:border-brand-red/40 transition-all duration-300 flex flex-col sm:flex-row group">
+                    <div class="sm:w-1/2 relative min-h-[220px] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=800&q=80" alt="Pausa pranzo gourmet Kubik" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 bg-brand-dark/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-brand-redBright border border-brand-red/30">
+                            12:00 - 15:00
+                        </div>
+                    </div>
+                    <div class="sm:w-1/2 p-6 sm:p-8 flex flex-col justify-between">
+                        <div>
+                            <div class="text-xs font-bold text-brand-redBright uppercase tracking-wider mb-1">Pausa Pranzo</div>
+                            <h3 class="font-display text-2xl font-bold text-white mb-3">Panini & Piattoni</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                                Proposte veloci e gustose: panini con pane artigianale, piattoni unici bilanciati, insalatone ricche e primi piatti del giorno per lavoratori e studenti.
+                            </p>
+                        </div>
+                        <ul class="text-xs text-gray-300 space-y-2 border-t border-gray-800 pt-4">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redBright"></i> Ingredienti freschi di giornata</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-redBright"></i> Servizio rapido e curato</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- MOMENT 3: APERITIVO MILANESE -->
+                <div class="glass-panel rounded-3xl overflow-hidden border border-brand-red/30 hover:border-brand-redBright transition-all duration-300 flex flex-col sm:flex-row group red-border-glow">
+                    <div class="sm:w-1/2 relative min-h-[220px] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&w=800&q=80" alt="Aperitivo con taglieri di salumi e formaggi" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 bg-brand-red text-white font-black px-3 py-1 rounded-full text-xs uppercase shadow">
+                            IL MUST
+                        </div>
+                    </div>
+                    <div class="sm:w-1/2 p-6 sm:p-8 flex flex-col justify-between">
+                        <div>
+                            <div class="text-xs font-bold text-brand-redBright uppercase tracking-wider mb-1">Dalle 17:30</div>
+                            <h3 class="font-display text-2xl font-bold text-white mb-3">Aperitivo con Taglieri</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                                Il vero aperitivo di Porta Romana. Generosi taglieri ricolmi di prosciutto crudo, salumi tipici, formaggi stagionati, focaccine e stuzzicherie.
+                            </p>
+                        </div>
+                        <ul class="text-xs text-gray-200 space-y-2 border-t border-gray-800 pt-4 font-medium">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-wine-glass text-brand-redBright"></i> Spritz, Negroni e Calici selezionati</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-cheese text-brand-redBright"></i> Taglieri maxi inclusi col drink</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- MOMENT 4: NIGHT COCKTAIL BAR -->
+                <div class="glass-panel rounded-3xl overflow-hidden border border-gray-800 hover:border-brand-red/40 transition-all duration-300 flex flex-col sm:flex-row group">
+                    <div class="sm:w-1/2 relative min-h-[220px] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80" alt="Cocktail Bar notturno Kubik Milano" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 bg-brand-dark/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-brand-redBright border border-brand-red/30">
+                            Fino alle 02:00
+                        </div>
+                    </div>
+                    <div class="sm:w-1/2 p-6 sm:p-8 flex flex-col justify-between">
+                        <div>
+                            <div class="text-xs font-bold text-brand-redBright uppercase tracking-wider mb-1">Cocktail Bar Notturno</div>
+                            <h3 class="font-display text-2xl font-bold text-white mb-3">Mixology & Party</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                                Atmosfera soffusa con dettagli rossi neon, musica coinvolgente e carta cocktail completa. Dai classici internazionali alle creation esclusive.
+                            </p>
+                        </div>
+                        <ul class="text-xs text-gray-300 space-y-2 border-t border-gray-800 pt-4">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-dice text-brand-redBright"></i> 'La Regola del Dado' il Ven & Sab</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-cocktail text-brand-redBright"></i> Distillati premium e Gin Tonic</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- REALISTIC PHOTO GALLERY -->
+    <section id="galleria" class="py-20 bg-brand-card/60 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-brand-redBright font-semibold text-xs tracking-widest uppercase">Atmosfera & Dettagli</span>
+                    <h2 class="font-display text-3xl sm:text-5xl font-black text-white uppercase tracking-tight mt-1">
+                        GALLERIA <span class="text-brand-redBright">FOTOGRAFICA</span>
+                    </h2>
+                </div>
+                <p class="text-gray-400 text-sm max-w-md mt-4 md:mt-0">
+                    Uno sguardo all'interno del Kubik Milano in Viale Monte Nero 39: luci calde, dettagli rossi ed esperienze culinarie.
+                </p>
+            </div>
+
+            <!-- Photo Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                
+                <!-- Photo 1: Cocktail Bar Ambient -->
+                <div class="group relative aspect-square rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-red/60 transition-all">
+                    <img src="https://images.unsplash.com/photo-1572116469696-31de0f17cc34?auto=format&fit=crop&w=800&q=80" alt="Bancone bar Kubik Milano" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-xs font-bold text-white"><i class="fa-solid fa-glass-martini mr-1.5 text-brand-redBright"></i> Bancone & Bottiglieria</span>
+                    </div>
+                </div>
+
+                <!-- Photo 2: Aperitivo Tagliere -->
+                <div class="group relative aspect-square rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-red/60 transition-all">
+                    <img src="https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&w=800&q=80" alt="Tagliere aperitivo salumi formaggi Kubik" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-xs font-bold text-white"><i class="fa-solid fa-drumstick-bite mr-1.5 text-brand-redBright"></i> Tagliere Salumi & Formaggi</span>
+                    </div>
+                </div>
+
+                <!-- Photo 3: Red Cocktail -->
+                <div class="group relative aspect-square rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-red/60 transition-all">
+                    <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80" alt="Cocktail rosso Negroni Sbagliato Kubik" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-xs font-bold text-white"><i class="fa-solid fa-cocktail mr-1.5 text-brand-redBright"></i> Signature Red Drink</span>
+                    </div>
+                </div>
+
+                <!-- Photo 4: Colazione Espresso Cornetto -->
+                <div class="group relative aspect-square rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-red/60 transition-all">
+                    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80" alt="Caffè espresso e croissant mattutino" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-xs font-bold text-white"><i class="fa-solid fa-mug-hot mr-1.5 text-brand-redBright"></i> Colazione della Mattina</span>
+                    </div>
+                </div>
+
+                <!-- Photo 5: Dice Roll Theme -->
+                <div class="group relative aspect-square rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-red/60 transition-all">
+                    <img src="https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?auto=format&fit=crop&w=800&q=80" alt="Dado e serata di gioco al bar" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-xs font-bold text-white"><i class="fa-solid fa-dice mr-1.5 text-brand-redBright"></i> La Regola del Dado</span>
+                    </div>
+                </div>
+
+                <!-- Photo 6: Spritz & Appetizers -->
+                <div class="group relative aspect-square rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-red/60 transition-all">
+                    <img src="https://images.unsplash.com/photo-1560512823-829485b8bf24?auto=format&fit=crop&w=800&q=80" alt="Aperol Spritz e stuzzichini" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-xs font-bold text-white"><i class="fa-solid fa-wine-glass-side mr-1.5 text-brand-redBright"></i> Aperitivo Spritz Time</span>
+                    </div>
+                </div>
+
+                <!-- Photo 7: Food Gourmet Sandwich -->
+                <div class="group relative aspect-square rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-red/60 transition-all">
+                    <img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=800&q=80" alt="Panini e focacce calde" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-xs font-bold text-white"><i class="fa-solid fa-burger mr-1.5 text-brand-redBright"></i> Panini & Piatti Espressi</span>
+                    </div>
+                </div>
+
+                <!-- Photo 8: Night Lounge Mood -->
+                <div class="group relative aspect-square rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-red/60 transition-all">
+                    <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=800&q=80" alt="Atmosfera notturna Kubik Milano" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-xs font-bold text-white"><i class="fa-solid fa-moon mr-1.5 text-brand-redBright"></i> Night Lounge Vibe</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ORARI & DOVE SIAMO -->
+    <section id="orari-dove" class="py-20 bg-brand-dark relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Info Panel -->
+                <div class="space-y-8">
+                    <div>
+                        <span class="text-brand-redBright font-semibold text-xs tracking-widest uppercase">Trova il Kubik</span>
+                        <h2 class="font-display text-3xl sm:text-5xl font-black text-white uppercase tracking-tight mt-1">
+                            DOVE SIAMO & <span class="text-brand-redBright">ORARI</span>
+                        </h2>
+                        <p class="text-gray-400 mt-3 text-sm sm:text-base">
+                            Ci troviamo nel cuore del quartiere **Porta Romana**, a pochi passi dalla Rotonda della Besana e ben collegati con i mezzi pubblici.
+                        </p>
+                    </div>
+
+                    <div class="space-y-4">
+                        
+                        <!-- Address -->
+                        <div class="glass-panel p-5 rounded-2xl border border-gray-800 flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-red/20 text-brand-redBright flex items-center justify-center text-xl shrink-0 border border-brand-red/30">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">Indirizzo</h4>
+                                <p class="text-gray-300 text-sm mt-0.5">Viale Monte Nero 39, 20135 Milano (MI)</p>
+                                <p class="text-xs text-gray-400 mt-1">Zona Porta Romana / Rotonda della Besana</p>
+                            </div>
+                        </div>
+
+                        <!-- Hours -->
+                        <div class="glass-panel p-5 rounded-2xl border border-gray-800 flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-red/20 text-brand-redBright flex items-center justify-center text-xl shrink-0 border border-brand-red/30">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">Orari di Apertura</h4>
+                                <div class="text-sm text-gray-300 mt-1 space-y-1">
+                                    <div class="flex justify-between gap-8">
+                                        <span>Lunedì - Sabato:</span>
+                                        <strong class="text-white">06:30 – 02:00 (Continuato)</strong>
+                                    </div>
+                                    <div class="flex justify-between gap-8 text-gray-400">
+                                        <span>Domenica:</span>
+                                        <span class="text-brand-redBright font-medium">Chiuso</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Phone & Contact -->
+                        <div class="glass-panel p-5 rounded-2xl border border-gray-800 flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-red/20 text-brand-redBright flex items-center justify-center text-xl shrink-0 border border-brand-red/30">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">Contatti & Info</h4>
+                                <p class="text-gray-300 text-sm mt-0.5">Telefono / WhatsApp: 
+                                    <a href="tel:+393348666109" class="text-brand-redBright font-semibold hover:underline">+39 334 866 6109</a>
+                                </p>
+                                <p class="text-xs text-gray-400 mt-1">Accettiamo prenotazioni per aperitivi e gruppi.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Direct Google Maps Action -->
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="https://maps.google.com/?cid=6609671464998501157" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-brand-red to-brand-redBright text-white font-bold text-sm text-center flex items-center justify-center gap-2 red-glow hover:opacity-95">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                            <span>Apri in Google Maps</span>
+                        </a>
+                        <a href="https://wa.me/393348666109?text=Ciao!%20Vorrei%20prenotare%20un%20tavolo%20per%20stasera." target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 rounded-xl glass-panel text-white font-bold text-sm text-center border border-gray-700 hover:border-brand-red/40 flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-emerald-400 text-lg"></i>
+                            <span>Scrivici su WhatsApp</span>
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- Map Frame -->
+                <div class="h-[420px] rounded-3xl overflow-hidden border border-gray-800 shadow-2xl relative glass-panel p-2">
+                    <iframe 
+                        title="Mappa Kubik Milano Viale Monte Nero 39" 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2798.543029141753!2d9.2014168!3d45.4542289!2m3!1f0!0f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c65737c9ef37%3A0x5cb5452d89457b25!2skubik!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit" 
+                        class="w-full h-full rounded-2xl filter brightness-90 contrast-110 invert-[0.9] hue-rotate-180" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CACHE & GITHUB REFRESH GUIDE MODAL -->
+    <div id="cache-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-brand-card rounded-3xl border border-brand-red/40 max-w-lg w-full p-6 sm:p-8 relative shadow-2xl red-glow">
+            
+            <button onclick="closeCacheModal()" class="absolute top-5 right-5 text-gray-400 hover:text-white p-2 rounded-lg" aria-label="Chiudi finestra">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <div class="flex items-center gap-3 text-brand-redBright mb-4">
+                <i class="fa-solid fa-rotate-right text-2xl"></i>
+                <h3 class="font-display text-xl font-bold text-white">Come Aggiornare la Pagina (Svuota Cache)</h3>
+            </div>
+
+            <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                Se hai già visitato questo sito in precedenza e continui a vedere i vecchi dettagli gialli invece della **nuova grafica rossa**, il tuo browser o GitHub Pages sta usando la versione salvata in memoria (cache).
+            </p>
+
+            <div class="space-y-4 text-xs sm:text-sm mb-6">
+                
+                <div class="bg-gray-900/90 p-4 rounded-xl border border-gray-800">
+                    <span class="font-bold text-brand-redBright block mb-1">💻 Su Computer (Windows / Linux):</span>
+                    <p class="text-gray-300">Premi contemporaneamente <kbd class="px-2 py-1 bg-gray-800 rounded text-white font-mono">Ctrl</kbd> + <kbd class="px-2 py-1 bg-gray-800 rounded text-white font-mono">F5</kbd> oppure <kbd class="px-2 py-1 bg-gray-800 rounded text-white font-mono">Shift</kbd> + <kbd class="px-2 py-1 bg-gray-800 rounded text-white font-mono">F5</kbd>.</p>
+                </div>
+
+                <div class="bg-gray-900/90 p-4 rounded-xl border border-gray-800">
+                    <span class="font-bold text-brand-redBright block mb-1">🍏 Su Mac (Safari / Chrome):</span>
+                    <p class="text-gray-300">Premi contemporaneamente <kbd class="px-2 py-1 bg-gray-800 rounded text-white font-mono">Cmd ⌘</kbd> + <kbd class="px-2 py-1 bg-gray-800 rounded text-white font-mono">Shift</kbd> + <kbd class="px-2 py-1 bg-gray-800 rounded text-white font-mono">R</kbd>.</p>
+                </div>
+
+                <div class="bg-gray-900/90 p-4 rounded-xl border border-gray-800">
+                    <span class="font-bold text-brand-redBright block mb-1">📱 Su Smartphone (iOS / Android):</span>
+                    <p class="text-gray-300">Apri la pagina in una **Scheda in Incognito / Privata** oppure cancella i dati di navigazione nelle impostazioni del browser.</p>
+                </div>
+
+                <div class="bg-brand-redDark/30 p-3 rounded-xl border border-brand-red/30 text-xs text-gray-300">
+                    <i class="fa-brands fa-github text-white mr-1"></i> Nota per GitHub Pages: la distribuzione delle modifiche dal repository richiede fino a 60 secondi prima di diventare visibile online.
+                </div>
+
+            </div>
+
+            <div class="flex justify-end gap-3">
+                <button onclick="forcePageReload()" class="w-full bg-brand-red hover:bg-brand-redDark text-white py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow red-glow">
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                    <span>Ricarica Pagina Ora</span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-950 border-t border-gray-900 py-12 text-gray-400 text-xs sm:text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                
+                <!-- Logo & Brand -->
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-brand-red flex items-center justify-center text-white font-black text-sm">
+                        K
+                    </div>
+                    <div>
+                        <span class="font-display font-bold text-white text-base">KUBIK MILANO</span>
+                        <p class="text-xs text-gray-400">Viale Monte Nero 39, Porta Romana (Milano)</p>
+                    </div>
+                </div>
+
+                <!-- Quick Navigation -->
+                <div class="flex flex-wrap justify-center gap-6 text-xs text-gray-300">
+                    <a href="#chi-siamo" class="hover:text-brand-redBright transition-colors">Chi Siamo</a>
+                    <a href="#regola-dado" class="hover:text-brand-redBright transition-colors">La Regola del Dado</a>
+                    <a href="#esperienza" class="hover:text-brand-redBright transition-colors">Aperitivo & Colazione</a>
+                    <a href="#galleria" class="hover:text-brand-redBright transition-colors">Galleria</a>
+                    <button onclick="openCacheModal()" class="hover:text-brand-redBright underline">Guida Cache Ctrl+F5</button>
+                </div>
+
+                <!-- Socials & Copyright -->
+                <div class="text-center md:text-right text-xs text-gray-400">
+                    <div class="flex justify-center md:justify-end gap-4 mb-2 text-base text-gray-300">
+                        <a href="https://maps.google.com/?cid=6609671464998501157" target="_blank" class="hover:text-brand-redBright"><i class="fa-solid fa-map-pin"></i></a>
+                        <a href="https://wa.me/393348666109" target="_blank" class="hover:text-brand-redBright"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="tel:+393348666109" class="hover:text-brand-redBright"><i class="fa-solid fa-phone"></i></a>
+                    </div>
+                    <p>© 2026 Kubik Milano. Tutti i diritti riservati.</p>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                menu.classList.add('hidden');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        // Cache Reset Modal Functions
+        function openCacheModal() {
+            document.getElementById('cache-modal').classList.remove('hidden');
+        }
+
+        function closeCacheModal() {
+            document.getElementById('cache-modal').classList.add('hidden');
+        }
+
+        function forcePageReload() {
+            // Force reload skipping cache where supported
+            window.location.reload(true);
+        }
+
+        // Close modal when clicking outside box
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('cache-modal');
+            if (e.target === modal) {
+                closeCacheModal();
+            }
+        });
+    </script>
+</body>
+</html>
